@@ -3,6 +3,7 @@ import { MainLayout } from "../components/layouts";
 import { GetStaticProps } from "next";
 import pokeAPI from "../api/pokeAPI";
 import { SmallPokemon, PokemonListResponse } from "../interfaces";
+import { Card, Grid, Row, Text } from "@nextui-org/react";
 
 interface Props {
   pokemons: SmallPokemon[];
@@ -12,15 +13,23 @@ const HomePage: NextPage<Props> = ({ pokemons }) => {
   return (
     <>
       <MainLayout title="Pokedex">
-        <ul>
+        <Grid.Container gap={2} justify="flex-start">
           {pokemons.map(({ id, img, url, name }) => (
-            <li key={id}>
-              <h1>{name}</h1>
-              <h2>{`ID: ${img}`}</h2>
-              <h2>{`URL: ${url}`}</h2>
-            </li>
+            <Grid xs={6} sm={3} md={2} xl={1} key={id}>
+              <Card isHoverable isPressable>
+                <Card.Body css={{ p: 2 }}>
+                  <Card.Image src={img} width="100%" height={140} />
+                </Card.Body>
+                <Card.Footer>
+                  <Row justify="space-between">
+                    <Text> {name}</Text>
+                    <Text> #{id}</Text>
+                  </Row>
+                </Card.Footer>
+              </Card>
+            </Grid>
           ))}
-        </ul>
+        </Grid.Container>
       </MainLayout>
     </>
   );
