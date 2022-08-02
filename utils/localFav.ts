@@ -17,4 +17,8 @@ const isFav = (id: number): boolean => {
   return favs.includes(id);
 };
 
-export default { toggleFav, isFav };
+const pokemons = (): number[] => {
+  return JSON.parse(localStorage.getItem("favorites") || "[]");
+};
+
+export default { pokemons, toggleFav, isFav };
