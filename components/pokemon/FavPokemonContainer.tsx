@@ -1,5 +1,5 @@
-import { Grid } from "@nextui-org/react";
 import React, { FC } from "react";
+import { Grid } from "@nextui-org/react";
 import { FavPokemonCard } from "./FavPokemonCard";
 
 interface Props {
