@@ -3,12 +3,17 @@ import { GetStaticProps, NextPage, GetStaticPaths } from "next";
 import { pokeAPI } from "../../api";
 import { MainLayout } from "../../components";
 import { Pokemon } from "../../interfaces";
+import { localFavorites } from "../../utils";
 
 interface Props {
   pokemon: Pokemon;
 }
 
 const PokemonPage: NextPage<Props> = ({ pokemon }) => {
+  const onToggleFav = () => {
+    localFavorites.toggleFav(pokemon.id);
+  };
+
   return (
     <MainLayout title={pokemon.name}>
       <Grid.Container css={{ marginTop: "5px" }} gap={2}>
@@ -37,7 +42,7 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
                 {pokemon.name}
               </Text>
 
-              <Button color="gradient" ghost>
+              <Button color="gradient" ghost onClick={onToggleFav}>
                 Guardar en favoritos
               </Button>
             </Card.Header>
