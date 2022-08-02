@@ -10,4 +10,11 @@ const toggleFav = (id: number) => {
   localStorage.setItem("favorites", JSON.stringify(favs));
 };
 
-export default { toggleFav };
+const isFav = (id: number): boolean => {
+  if (typeof window === "undefined") return false;
+
+  let favs: number[] = JSON.parse(localStorage.getItem("favorites") || "[]");
+  return favs.includes(id);
+};
+
+export default { toggleFav, isFav };
